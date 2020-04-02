@@ -46,6 +46,18 @@ class Show {
             form.reset();
         }, 3000);
     }
+
+    addExpenseList(name, amount) {
+        const expensesList = document.querySelector('#expenses ul');
+
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+        li.innerHTML = `${name}
+                        $ ${amount}`;
+
+        expensesList.appendChild(li);                
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -75,6 +87,7 @@ form.addEventListener('submit', function(e) {
     if(nameExpense === '' || amountExpense === '') {
         ui.printMessage('Something went wrong', 'error');
     } else {
-        console.log('add');
+        ui.printMessage('Correct', 'correct');
+        ui.addExpenseList(nameExpense, amountExpense);
     }
 });
