@@ -1,5 +1,7 @@
 const userBudget = prompt('How much do you have?');
 let amountBudget;
+const form = document.getElementById('add-expense');
+
 
 // class
 
@@ -24,6 +26,26 @@ class Show {
         budgetSpan.innerHTML = `${amount}`;
         remainSpan.innerHTML = `${amount}`;
     }
+
+    printMessage(message, type) {
+        const divMessage = document.createElement('div');
+        divMessage.classList.add('text-center', 'alert');
+
+        if(type === 'error'){
+            divMessage.classList.add('alert-danger');
+        } else {
+            divMessage.classList.add('alert-success');
+        }
+
+        divMessage.appendChild(document.createTextNode(message));
+
+        document.querySelector('.primary').insertBefore(divMessage, form);
+
+        setTimeout(function() {
+            document.querySelector('.primary .alert').remove();
+            form.reset();
+        }, 3000);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -39,4 +61,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
     }
 
-})
+});
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nameExpense = document.querySelector('#expense').value;
+    const amountExpense = document.querySelector('#amount').value;
+    //console.log('Send');
+
+    const ui = new Show();
+
+    if(nameExpense === '' || amountExpense === '') {
+        ui.printMessage('Something went wrong', 'error');
+    } else {
+        console.log('add');
+    }
+});
