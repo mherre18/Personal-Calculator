@@ -66,7 +66,27 @@ class Show {
         //console.log(budgetRemainUser);
 
         remaining.innerHTML = `${budgetRemainUser}`;
-    }        
+
+        this.checkBudget();
+    }    
+    
+    // changing colors of remain
+
+    checkBudget() {
+        const totalBudget = amountBudget.budget;
+        const budgetRemain = amountBudget.remain;
+
+        // check 25%
+        if((totalBudget / 4) > budgetRemain) {
+            const remain = document.querySelector('.remaining');
+            remain.classList.remove('alert.success', 'alert-warning');
+            remain.classList.add('alert-danger');
+        } else if((totalBudget / 2) > budgetRemain) {
+            const remain = document.querySelector('.remaining');
+            remain.classList.remove('alert.success');
+            remain.classList.add('alert-warning');
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
