@@ -14,13 +14,29 @@ class Budget {
     }
 }
 
+class Show {
+    insertBudget(amount){
+
+        const budgetSpan = document.querySelector('span#total');
+        const remainSpan = document.querySelector('span#remaining');
+
+        //HTML
+        budgetSpan.innerHTML = `${amount}`;
+        remainSpan.innerHTML = `${amount}`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     if(userBudget === null || userBudget === '') {
         window.location.reload();
 
     } else {
         amountBudget = new Budget(userBudget);
-        console.log(amountBudget);
+        //console.log(amountBudget);
+
+        const ui = new Show();
+        ui.insertBudget(amountBudget.budget);
+        
     }
 
 })
