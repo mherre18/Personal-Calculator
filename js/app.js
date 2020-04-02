@@ -58,6 +58,15 @@ class Show {
 
         expensesList.appendChild(li);                
     }
+
+    budgetRemain(amount) {
+        const remain = document.querySelector('span#remaining');
+
+        const budgetRemainUser = amountBudget.budgetRemain(amount);
+        //console.log(budgetRemainUser);
+
+        remaining.innerHTML = `${budgetRemainUser}`;
+    }        
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -89,5 +98,6 @@ form.addEventListener('submit', function(e) {
     } else {
         ui.printMessage('Correct', 'correct');
         ui.addExpenseList(nameExpense, amountExpense);
+        ui.budgetRemain(amountExpense);
     }
 });
